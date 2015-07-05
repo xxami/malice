@@ -56,6 +56,38 @@ namespace Malice {
 						Program.RefreshLists();
 						break;
 
+					/**
+					 * http mirror commands
+					 */
+					case "mirror":
+
+						if (command_args.Length < 2) {
+							Console.WriteLine("command mirror :: missing arguments");
+							break;
+						}
+
+						switch (command_args[1]) {
+
+							case "create":
+								Program.CreateMirror();
+								break;
+
+							case "list":
+								Program.ListMirrors();
+								break;
+
+							case "del":
+							case "remove":
+								Program.RemoveMirror(command_args);
+								break;
+
+							default:
+								Console.WriteLine("command mirror :: invalid arguments");
+								break;
+						}
+
+						break;
+
 					default:
 						Console.WriteLine("unknown command :: see help!");
 						break;
@@ -102,6 +134,27 @@ namespace Malice {
 		}
 
 		/**
+		 * create/add remote http mirror
+		 */
+		public static void CreateMirror() {
+
+		}
+
+		/**
+		 * list all remote http mirros
+		 */
+		public static void ListMirrors() {
+
+		}
+
+		/**
+		 * remove remote http mirror by id as listed
+		 */
+		public static void RemoveMirror(string[] args) {
+
+		}
+
+		/**
 		 * display commands
 		 */
 		public static void ShowCommands() {
@@ -115,7 +168,7 @@ namespace Malice {
 				" + exit | close \t\t-- exit the interpreter");
 			
 			/**
-			 * list of commands
+			 * list of core commands
 			 */
 			Console.WriteLine("help :: malice commands");
 			Console.WriteLine(
@@ -124,6 +177,15 @@ namespace Malice {
 				" + manga [filter] \t\t-- display manga lists\n" +
 				" + update manga | anime id \t-- update list for item as listed\n" +
 				" + refresh \t\t\t-- fetch lists again to update data");
+
+			/**
+			 * list of http mirror commands
+			 */
+			Console.WriteLine("help :: http mirror commands");
+			Console.WriteLine(
+				" + mirror create \t\t-- post updates to a new remote mirror site\n" +
+				" + mirror list \t\t\t-- list all remote configured mirrors\n" +
+				" + mirror del | remove id \t-- remove mirror by id as listed");
 		}
 
 		/**
