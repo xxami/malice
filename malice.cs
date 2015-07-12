@@ -1,15 +1,27 @@
 
 using System;
+using Akka.Actor;
 
 namespace Malice {
 
 	class Program {
 
 		/**
+		 * ActorSystem singleton
+		 */
+		public static ActorSystem ActorSys;
+
+		/**
+		 * ActorRefs
+		 */
+		public static IActorRef AMalLoginRef; 
+
+		/**
 		 * entry point / main loop
 		 */
 		public static void Main() {
 
+			Program.InitActorSystem();
 			bool running = true;
 
 			while (running) {
@@ -99,10 +111,19 @@ namespace Malice {
 		}
 
 		/**
+		 * create actor system - setup actors
+		 */
+		public static void InitActorSystem() {
+			Program.ActorSys = ActorSystem.Create("MaliceActorSys");
+			Program.AMalLoginRef = Program.ActorSys.ActorOf(Props.Create<AMalLogin>(),
+				"AMalLogin");
+		}
+
+		/**
 		 * mal login
 		 */
 		public static void Login(string[] args) {
-
+			Program.AMalLoginRef.Tell(new AMalLogin.UsingPrompt());
 		}
 
 		/**

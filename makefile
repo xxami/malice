@@ -6,6 +6,8 @@
 # nuget install ilrepack (for make release)  
 
 csc=mcs
+
+# configure ilrepack depends
 ilrepack=ilrepack
 
 bin=./malice
@@ -22,6 +24,7 @@ refs=\
 
 classes=\
 	malice.cs\
+	mal_login.cs\
 
 # make all !
 
