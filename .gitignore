@@ -1,7 +1,6 @@
-Akka.*.*.*/
 Akka.dll
-Newtonsoft.Json.*.*.*/
 Newtonsoft.Json.dll
 malice
 malice.exe
 bin/
+depends/
